@@ -17,44 +17,44 @@ app.all('/dishes',(req,res,next) =>{
 });//dishes is the end point,callback function
 
 
-app.get('./dishes',(req,res,next) =>{
-  res.end('will send details of  the dishes' + req.params.dishId + 'to you');
+app.get('/dishes',(req,res,next) =>{
+  res.end('will send details of  the dishes to you');
 });
 
-app.post('./dishes',(req,res,next) =>{
+app.post('/dishes',(req,res,next) =>{
     res.statusCode = 403;
-    res.end('POSt operation not supported on /dishes' + req.params.dishId);
+    res.end('POSt operation not supported on dishes');
   });
 
 
-app.put('./dishes',(req,res,next) =>{
-    res.write('updating the dish: ' + req.params.dishId);
+app.put('/dishes',(req,res,next) =>{
+    res.write('updating the dish:\n ');
     res.end('will update the dish' + req.body.name + '\n' +'with deatails: ' +  req.body.description );
   });
 
 
-app.delete('./dishes',(req,res,next) =>{
-    res.end('deleting dishes' + req.params.dishId);
+app.delete('/dishes',(req,res,next) =>{
+    res.end('deleting dishes');
   });
 
 
-  app.get('./dishes/:dishId',(req,res,next) =>{
-    res.end('will send all the dishes to you');
+  app.get('/dishes/:dishId',(req,res,next) =>{
+    res.end('will send all the dishes to you' + req.params.dishId);
   });
   
-  app.post('./dishes/:dishId',(req,res,next) =>{
-      res.end('will add the dish : ' + req.body.name +  'with details :' + req.body.description);//extract the info from the body that is going to be returned
+  app.post('/dishes/:dishId',(req,res,next) =>{
+      res.end(req.params.dishId+ '\nwill add the dish : ' + req.body.name +  'with details :' + req.body.description);//extract the info from the body that is going to be returned
     });
   
   
-  app.put('./dishes/:dishId',(req,res,next) =>{
+  app.put('/dishes/:dishId',(req,res,next) =>{
       res.statusCode=403;
-      res.end('PUT operation not supported on /dishes');
+      res.end('PUT operation not supported on dishes');
     });
   
   
-  app.delete('./dishes/:dishId',(req,res,next) =>{
-      res.end('deleting all the dishes');
+  app.delete('/dishes/:dishId',(req,res,next) =>{
+      res.end(req.params.dishId + 'deleting all the dishes');
     });
   
 
